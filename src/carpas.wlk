@@ -20,9 +20,11 @@ class Carpa{
 	method cuantosEbriosEmpedernidos(){ 
 			genteDentro.count({ jarras => jarras.capacidad() >= 1 })
 	}
-	method servirJarra(cap,cerveza){ 
+	method servirJarra(cap,cerveza,alguien){ 
 		const jarra = new Jarra(capacidadJarra=cap)
 		jarra.llenarCon(cerveza)
+		alguien.comprarJarra(jarra)
+		
 	}
 
 } 

@@ -3,7 +3,7 @@ import marcas.*
 test "personasTest" {
 
 	const corona1 = new  CervezaRubia(graduacion=0.08,contLupulo=3,madeIn="belgica",graduacionReglamentaria=0.09,marca=corona )
-	const octy = new Persona(peso=80,nivelDeAguante=5,tipoDePersona=belga)
+	const octy = new Belga(peso=80,nivelDeAguante=5,paisDeFabricacion="belgica")
 	const jarra1 = new Jarra(capacidadJarra= 0.5)
 	jarra1.llenarCon(corona1)
 	assert.equals(0.04,jarra1.contenidoDeAlcohol())
