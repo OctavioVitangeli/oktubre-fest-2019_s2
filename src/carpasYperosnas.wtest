@@ -1,0 +1,51 @@
+import marcas.*
+import carpas.*
+import personass.*
+import jarras.*
+
+test "personas y carpas"{
+	const corona = new Rubia(graduacion=0.08,lupulo=5,paisDeOrigen="alemania")
+	const hofbrau = new Roja(lupulo=5,paisDeOrigen="checoslovaquia")
+	const guines = new Negra(lupulo=6,paisDeOrigen="belgica")
+	
+	const jarra1 = new Jarra(marca=corona,litros=0.5)
+	const jarra2 = new Jarra(marca=hofbrau,litros=1)
+	const jarra3 = new Jarra(marca=guines,litros=1)
+ 	
+ 	const ulrich = new Aleman(peso=100,leGustaMusicaTradi=true,nivelDeAguante=5,
+ 							paisDelQueProviene="alemania")
+ 	
+ 	
+ 				
+ 	const carpaAlemana = new Carpa(limiteDeGente=6,tieneBanda=false,marcaQueVende="guines")						
+ 							
+ 	
+ 	graduacionReglamentaria.setGraduacion(0.08)
+ 	assert.equals(0.04,jarra1.contenidoDeAlcohol())
+ 	assert.equals(0.1,jarra2.contenidoDeAlcohol())
+ 	assert.equals(0.08,jarra3.contenidoDeAlcohol())
+	
+	ulrich.comprarJarra(jarra1)
+	ulrich.comprarJarra(jarra2)
+	assert.equals(0.14,ulrich.alcoholConsumido())
+	assert.equals(true,ulrich.estaEbrio())
+	assert.equals(true,ulrich.leGusta(hofbrau))
+	
+	assert.equals(false,ulrich.quiereEntrar(carpaAlemana))
+	assert.equals(false,ulrich.puedeEntrar(carpaAlemana))
+	assert.equals(false,carpaAlemana.dejaIngresar(ulrich))
+	
+	
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+
+}

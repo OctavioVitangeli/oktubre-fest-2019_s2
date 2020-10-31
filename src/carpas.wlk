@@ -1,30 +1,35 @@
-import personas.* 
+import jarras.*
 import marcas.*
-
+import personass.*
 class Carpa{
 	var property limiteDeGente
-	var property tieneBanda
+	var property tieneBanda = true
 	var property marcaQueVende
 	var property genteDentro = []
 	
+	method dejaIngresar(persona) = limiteDeGente > self.cantidadDeGenteDentro() and not persona.estaEbrio()
 	
-	method dejarEntrar(alguien){ return  (self.genteDentro() + alguien.quiereEntrar() <= limiteDeGente 
-										and  not alguien.estaBorracho())
-											
+	method cantidadDeGenteDentro() = genteDentro.size()
+	
+	method ingresarCarpa(persona){
+		if(persona.puedeEntrar(self))
+		{genteDentro.add(persona)}
+		else 
+		{self.error("no hay espacio")}
 	}
-	method entrarEnLaCarpa(alguien){if ( self.dejarEntrar(alguien)) 
-			{ genteDentro.add()}
-			else{ self.error("no hay espacio")}	
-	}
-
-	method cuantosEbriosEmpedernidos(){ 
-			genteDentro.count({ jarras => jarras.capacidad() >= 1 })
-	}
-	method servirJarra(cap,cerveza,alguien){ 
-		const jarra = new Jarra(capacidadJarra=cap)
-		jarra.llenarCon(cerveza)
-		alguien.comprarJarra(jarra)
 		
+	method servirJarra(capacidad, persona){
+		
+		if(genteDentro.contains(persona))
+		{const jarra = new Jarra(litros=capacidad,marca=self.marcaQueVende())
+		persona.comprarJarra(jarra)	}
+		else
+		{self.error("no esta en la carpa")}
 	}
-
-} 
+	method ebriosEmpedernidos() = genteDentro.count({ personas => personas.ebrioEmpedernido()})
+	
+	method esHomogenea() = genteDentro.all({ personas => personas.paisDelQueProviene() == personas.paisDelQueProviene()})
+	
+	
+}
+	

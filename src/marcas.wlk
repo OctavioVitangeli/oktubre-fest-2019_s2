@@ -1,34 +1,25 @@
-class Cerveza{
-	var property graduacion
-	var property contLupulo
-	var property madeIn
-	var property graduacionReglamentaria	
-	var property marca
-
-}
-
-class CervezaRubia inherits Cerveza{
-}
-
-class CervezaNegra inherits Cerveza{
+class Cerveza {
+	 var property lupulo = 0
+	 var property paisDeOrigen
 	
-	 override method graduacion(){ return  graduacionReglamentaria.min(contLupulo * 2)}
+	 method graduacion()
+	 
 }
 
-class CervezaRoja inherits CervezaNegra{
+class Rubia inherits Cerveza{
+	var property graduacion = 0	
+}
+
+
+class Negra inherits Cerveza{
 	
-	override method  graduacion(){return super() * 1.25}
+	override method graduacion() = graduacionReglamentaria.graduacionMundial().min(self.lupulo() * 2)
 }
 
-class Jarra{
-	var property capacidadJarra
-	var property contenido = []
-	method llenarCon(cerveza){ contenido.add(cerveza)}
-	method contenidoDeAlcohol(){
-		return self.capacidadJarra() * contenido.sum({c=>c.graduacion()})
-	}
+class Roja inherits Negra{
+	override method graduacion() = super() *1.25
 }
-
-object corona{}
-object guines{}
-object holfbrau{}
+object graduacionReglamentaria{
+	var property graduacionMundial = 0
+	method setGraduacion(num) { graduacionMundial = num} 
+}
